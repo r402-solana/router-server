@@ -1,9 +1,13 @@
 import express from "express";
 import { CONFIG } from "./config";
+import { payment } from "./middleware/payment";
+import routes from "./routes";
 
 const app = express();
 
 app.use(express.json());
+app.use(payment);
+app.use(routes);
 
 app.listen(CONFIG.port, () => {
   console.log(`🚀 AI Router with x402 protection listening at http://localhost:${CONFIG.port}`);
