@@ -1,14 +1,19 @@
-import { Router } from "express";
+import { Router, type Router as ExpressRouter } from "express";
 import { streamText } from "ai";
 import { openai } from "@ai-sdk/openai";
 import type { ChatCompletionRequest } from "../types";
 import { createChatResponse } from "../utils/response";
 
-const router = Router();
+const router: ExpressRouter = Router();
 
 router.post("/v1/chat/gpt", async (req, res) => {
   try {
-    const { model = "gpt-4o-mini", messages, stream = false, ...options } = req.body as ChatCompletionRequest;
+    const {
+      model = "gpt-4o-mini",
+      messages,
+      stream = false,
+      ...options
+    } = req.body as ChatCompletionRequest;
 
     if (!messages) {
       return res.status(400).json({ error: "Missing required field: messages" });
@@ -31,4 +36,3 @@ router.post("/v1/chat/gpt", async (req, res) => {
 });
 
 export default router;
-

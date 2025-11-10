@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, type Router as ExpressRouter } from "express";
 import { streamText } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { anthropic } from "@ai-sdk/anthropic";
@@ -6,7 +6,7 @@ import { deepseek } from "@ai-sdk/deepseek";
 import type { ChatCompletionRequest } from "../types";
 import { createChatResponse } from "../utils/response";
 
-const router = Router();
+const router: ExpressRouter = Router();
 
 router.post("/v1/chat/completions", async (req, res) => {
   try {
@@ -76,4 +76,3 @@ router.post("/v1/chat/completions", async (req, res) => {
 });
 
 export default router;
-

@@ -1,10 +1,10 @@
-import { Router } from "express";
+import { Router, type Router as ExpressRouter } from "express";
 import { streamText } from "ai";
 import { anthropic } from "@ai-sdk/anthropic";
 import type { ChatCompletionRequest } from "../types";
 import { createChatResponse } from "../utils/response";
 
-const router = Router();
+const router: ExpressRouter = Router();
 
 router.post("/v1/chat/claude", async (req, res) => {
   try {
@@ -36,4 +36,3 @@ router.post("/v1/chat/claude", async (req, res) => {
 });
 
 export default router;
-
